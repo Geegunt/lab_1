@@ -1,3 +1,5 @@
+import re
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -12,3 +14,20 @@ class Stack:
         return self.items == []
 
 
+OPERATIONS: dict = {
+'+': lambda x, y: x + y,
+    '-': lambda x, y: x - y,
+    '*': lambda x, y: x * y,
+    '/': lambda x, y: x / y,
+    '**': lambda x, y: x ** y,
+    '//': lambda x, y: x // y,
+    '%': lambda x, y: x % y
+}
+
+def tokenizations(expression: str) -> dict:
+    current_expression = expression.replace(('(', '').replace(')', ''))
+    pattern = r'\d+(?:\.\d+)?|//|\*\*|[%+\-*/]'
+    tokens = re.findall(pattern, current_expression)
+    joined_tokens = ''.join(tokens)
+    expression_no_spaces = current_expression.replace(' ', '')
+    return tokens
