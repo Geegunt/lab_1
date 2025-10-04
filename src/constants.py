@@ -31,3 +31,10 @@ def tokenizations(expression: str) -> dict:
     joined_tokens = ''.join(tokens)
     expression_no_spaces = current_expression.replace(' ', '')
     return tokens
+
+def isint(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
